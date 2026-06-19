@@ -183,17 +183,17 @@
 
                     <div class="booking-form-wrap"
                         style="background-color: #1a1a1a; padding: 40px; border-radius: 10px; border: 1px solid #333;">
-                        <form id="whatsappBookingForm">
+                        <form id="bookingForm" method="post" action="send-booking.asp">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Full Name *</label>
-                                    <input type="text" id="fullname" class="form-control" placeholder="John Doe"
+                                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="John Doe"
                                         required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Phone Number *</label>
-                                    <input type="tel" id="phone" class="form-control" placeholder="+44 7700 900077"
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="+44 7700 900077"
                                         required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                 </div>
@@ -202,7 +202,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Service Type *</label>
-                                    <select id="serviceType" class="form-control" required
+                                    <select id="serviceType" name="serviceType" class="form-control" required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                         <option value="Car Rental">Car Rental (Fethiye & Surroundings)</option>
                                         <option value="Dalaman Airport Transfer">Dalaman Airport Private Transfer
@@ -211,7 +211,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Select Vehicle / Class *</label>
-                                    <select id="vehicle" class="form-control" required
+                                    <select id="vehicle" name="vehicle" class="form-control" required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                         <option value="Fiat Egea Sedan">Fiat Egea Sedan (Manual / Automatic)</option>
                                         <option value="Fiat Egea Cross">Fiat Egea Cross (Manual)</option>
@@ -227,12 +227,12 @@
                             <div class="row mt-3">
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Start Date *</label>
-                                    <input type="date" id="startDate" class="form-control" required
+                                    <input type="date" id="startDate" name="startDate" class="form-control" required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">End Date *</label>
-                                    <input type="date" id="endDate" class="form-control" required
+                                    <input type="date" id="endDate" name="endDate" class="form-control" required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">
                                 </div>
                             </div>
@@ -241,17 +241,22 @@
                                 <div class="col-md-12 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Pickup / Dropoff Details &
                                         Notes</label>
-                                    <textarea id="notes" class="form-control" rows="4"
+                                    <textarea id="notes" name="notes" class="form-control" rows="4"
                                         placeholder="Flight number, pickup hotel, special child seat requirements..."
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;"></textarea>
                                 </div>
                             </div>
 
                             <div class="row mt-4">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn-style-four"
-                                        style="background-color: #25d366; border-color: #25d366; color: #fff; font-size: 18px; padding: 12px 35px; border-radius: 5px;">
+                                <div class="col-md-12 text-center d-flex flex-column align-items-center gap-3">
+                                    <button type="button" onclick="submitToWhatsApp()" class="btn-style-four"
+                                        style="background-color: #25d366; border-color: #25d366; color: #fff; font-size: 18px; padding: 12px 35px; border-radius: 5px; width: 100%; max-width: 350px;">
                                         <i class="fab fa-whatsapp"></i> Send Booking via WhatsApp
+                                    </button>
+                                    
+                                    <button type="submit" class="btn-style-four"
+                                        style="background-color: #e5ab1c; border-color: #e5ab1c; color: #111; font-size: 18px; padding: 12px 35px; border-radius: 5px; width: 100%; max-width: 350px;">
+                                        <i class="fas fa-envelope"></i> Send Booking via Email
                                     </button>
                                 </div>
                             </div>
@@ -345,10 +350,13 @@
     <script src="assets/language-switcher/jquery.polyglot.language.switcher.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- WhatsApp Submission Script -->
+    <!-- Booking Submission Script -->
     <script>
-        document.getElementById('whatsappBookingForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        function submitToWhatsApp() {
+            var form = document.getElementById('bookingForm');
+            if (!form.reportValidity()) {
+                return;
+            }
 
             var fullname = document.getElementById('fullname').value;
             var phone = document.getElementById('phone').value;
@@ -370,7 +378,7 @@
 
             var whatsappUrl = "https://wa.me/905342890048?text=" + encodeURIComponent(message);
             window.open(whatsappUrl, '_blank');
-        });
+        };
 
         // Auto-select vehicle from URL param
         window.addEventListener('DOMContentLoaded', function () {
