@@ -55,7 +55,7 @@ If fullname <> "" And phone <> "" Then
     
     Dim emailBody
     emailBody = "<html><head><style>body{font-family:Arial,sans-serif;color:#333;}table{border-collapse:collapse;width:100%;max-width:600px;}td{padding:8px;border:1px solid #ddd;}</style></head><body>" & _
-                "<h2>New Booking Request - İncity Rent a Car</h2>" & _
+                "<h2>New Booking Request - incity Rent a Car</h2>" & _
                 "<table>" & _
                 "<tr><td><strong>Full Name</strong></td><td>" & Server.HTMLEncode(fullname) & "</td></tr>" & _
                 "<tr><td><strong>Phone Number</strong></td><td>" & Server.HTMLEncode(phone) & "</td></tr>" & _
