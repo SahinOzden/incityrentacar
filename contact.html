@@ -142,7 +142,6 @@
                         <li>Akarca Mah. Şehit Nihat Oran Caddesi, No: 30, Fethiye</li>
                         <li><a href="tel:+905343656565">+90 534 365 65 65 (Call)</a></li>
                         <li><a href="tel:+905342890048">+90 534 289 00 48 (Call)</a></li>
-                        <li><a href="https://wa.me/905343656565" target="_blank">+90 534 365 65 65 (WhatsApp)</a></li>
                         <li><a href="https://wa.me/905342890048" target="_blank">+90 534 289 00 48 (WhatsApp)</a></li>
                         <li><a href="mailto:info@incitycarhire.com">info@incitycarhire.com</a></li>
                     </ul>
@@ -209,8 +208,6 @@
                                 <span style="color: #e5ab1c; font-size: 24px;"><i class="fab fa-whatsapp"></i></span>
                                 <div>
                                     <h6 style="margin: 0; color: #e5ab1c;">WhatsApp Support</h6>
-                                    <p style="margin: 0; color: #e0e0e0;"><a href="https://wa.me/905343656565"
-                                            target="_blank" style="color: #e0e0e0;">+90 534 365 65 65</a></p>
                                     <p style="margin: 0; color: #e0e0e0;"><a href="https://wa.me/905342890048"
                                             target="_blank" style="color: #e0e0e0;">+90 534 289 00 48</a></p>
                                 </div>
@@ -233,37 +230,44 @@
                         <h2 class="title" style="font-size: 36px;">Contact Form</h2>
                     </div>
                     <div style="background-color: #1a1a1a; padding: 40px; border-radius: 10px; border: 1px solid #333;">
-                        <form id="contactForm">
+                        <form id="contactForm" method="post" action="send-contact.asp">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" id="contact_name" class="form-control" placeholder="Your Name"
+                                    <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Your Name"
                                         required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444; height: 50px;">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="email" id="contact_email" class="form-control" placeholder="Your Email"
+                                    <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Your Email"
                                         required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444; height: 50px;">
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12 mb-3">
-                                    <input type="text" id="contact_subject" class="form-control" placeholder="Subject"
+                                    <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="Subject"
                                         required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444; height: 50px;">
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12 mb-3">
-                                    <textarea id="contact_message" class="form-control" rows="5"
+                                    <textarea id="contact_message" name="contact_message" class="form-control" rows="5"
                                         placeholder="Your Message..." required
                                         style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;"></textarea>
                                 </div>
                             </div>
                             <div class="row mt-4">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn-style-five"
-                                        style="padding: 12px 40px; font-size: 16px;">Send Message</button>
+                                <div class="col-md-12 text-center d-flex flex-column align-items-center gap-3">
+                                    <button type="button" onclick="submitToWhatsApp()" class="btn-style-four"
+                                        style="background-color: #25d366; border-color: #25d366; color: #fff; font-size: 18px; padding: 12px 35px; border-radius: 5px; width: 100%; max-width: 350px;">
+                                        <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                                    </button>
+                                    
+                                    <button type="submit" class="btn-style-four"
+                                        style="background-color: #e5ab1c; border-color: #e5ab1c; color: #111; font-size: 18px; padding: 12px 35px; border-radius: 5px; width: 100%; max-width: 350px;">
+                                        <i class="fas fa-envelope"></i> Send via Email
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -331,8 +335,8 @@
                                 <li>Email: <a href="mailto:info@incitycarhire.com">info@incitycarhire.com</a></li>
                                 <li>Phone: <a href="tel:+905343656565">+90 534 365 65 65</a></li>
                                 <li>Phone: <a href="tel:+905342890048">+90 534 289 00 48</a></li>
-                                <li>WhatsApp: <a href="https://wa.me/905343656565" target="_blank">+90 534 365 65 65</a></li>
-                                <li>WhatsApp: <a href="https://wa.me/905342890048" target="_blank">+90 534 289 00 48</a></li>
+                                <li>WhatsApp: <a href="https://wa.me/905342890048" target="_blank">+90 534 289 00 48</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -367,25 +371,29 @@
     <script src="assets/language-switcher/jquery.polyglot.language.switcher.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Contact Form WhatsApp Integration -->
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            var name = document.getElementById('contact_name').value;
-            var email = document.getElementById('contact_email').value;
-            var subject = document.getElementById('contact_subject').value;
-            var message = document.getElementById('contact_message').value;
+     <!-- Contact Form Submission Script -->
+     <script>
+         function submitToWhatsApp() {
+             var form = document.getElementById('contactForm');
+             if (!form.reportValidity()) {
+                 return;
+             }
 
-            var waMsg = "*NEW CONTACT MESSAGE (İncity Rent a Car)*\n\n" +
-                "*Name:* " + name + "\n" +
-                "*Email:* " + email + "\n" +
-                "*Subject:* " + subject + "\n" +
-                "*Message:* " + message;
+             var name = document.getElementById('contact_name').value;
+             var email = document.getElementById('contact_email').value;
+             var subject = document.getElementById('contact_subject').value;
+             var message = document.getElementById('contact_message').value;
 
-            var whatsappUrl = "https://wa.me/905342890048?text=" + encodeURIComponent(waMsg);
-            window.open(whatsappUrl, '_blank');
-        });
-    </script>
+             var waMsg = "*NEW CONTACT MESSAGE (İncity Rent a Car)*\n\n" +
+                 "*Name:* " + name + "\n" +
+                 "*Email:* " + email + "\n" +
+                 "*Subject:* " + subject + "\n" +
+                 "*Message:* " + message;
+
+             var whatsappUrl = "https://wa.me/905342890048?text=" + encodeURIComponent(waMsg);
+             window.open(whatsappUrl, '_blank');
+         }
+     </script>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/905342890048" class="whatsapp-float" target="_blank" aria-label="Contact us on WhatsApp">
