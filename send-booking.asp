@@ -11,7 +11,7 @@ SMTP_SERVER = "mail.incitycarhire.com" ' SMTP Host
 SMTP_PORT   = 465                      ' SMTP Port for SSL
 USE_AUTH    = True                     ' Authentication enabled
 SMTP_USER   = "info@incitycarhire.com" ' SMTP Username
-SMTP_PASS   = "Ozk48300Icr"            ' SMTP Password
+SMTP_PASS   = "Ozkan39300"            ' SMTP Password
 USE_SSL     = True                     ' SSL enabled
 ' =========================================================================
 
