@@ -183,6 +183,11 @@
                     <div class="booking-form-wrap"
                         style="background-color: #1a1a1a; padding: 40px; border-radius: 10px; border: 1px solid #333;">
                         <form id="bookingForm" method="post" action="send-booking.asp">
+                            <!-- Honeypot Field -->
+                            <div style="display:none;" aria-hidden="true">
+                                <label for="website_url">Leave this field empty</label>
+                                <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label style="color: #fff; margin-bottom: 5px;">Full Name *</label>

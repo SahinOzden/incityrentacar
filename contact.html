@@ -231,6 +231,11 @@
                     </div>
                     <div style="background-color: #1a1a1a; padding: 40px; border-radius: 10px; border: 1px solid #333;">
                         <form id="contactForm" method="post" action="send-contact.asp">
+                            <!-- Honeypot Field -->
+                            <div style="display:none;" aria-hidden="true">
+                                <label for="website_url">Leave this field empty</label>
+                                <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Your Name"

@@ -28,7 +28,13 @@ Dim isSent, errorMsg
 isSent = False
 errorMsg = ""
 
-If fullname <> "" And phone <> "" Then
+Dim honeypot
+honeypot = Request.Form("website_url")
+
+If honeypot <> "" Then
+    ' Bot detected. Pretend it was sent to avoid giving clues to the spammer.
+    isSent = True
+ElseIf fullname <> "" And phone <> "" Then
     Dim ObjSendMail
     Set ObjSendMail = CreateObject("CDO.Message")
     
