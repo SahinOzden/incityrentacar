@@ -198,6 +198,9 @@ End If
                             </a>
                         </figure>
                         <p style="color: #e0e0e0;">Providing professional car hire & Dalaman airport transfer services in Fethiye and surrounding regions since 2017.</p>
+                        <div style="margin-top: 15px;">
+                            <a href="https://www.tursab.org.tr/tr/ddsv" target="_blank" ><img src="assets/images/tursab-dvs-13863.png" alt="TÜRSAB Digital Verification System" style="height: 120px; width: auto;" /></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
